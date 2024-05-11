@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from .models import user as user_model
 from .core.database import engine
-from .routes import auth
+from .routes import auth, user
 
 user_model.Base.metadata.create_all(bind=engine)
 
@@ -26,6 +26,7 @@ title="Katis",
 )
 
 app.include_router(auth.router)
+app.include_router(user.router)
 
 
 @app.get("/")
